@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::group(['prefix' => '/project'], function () {
+        Route::get('/{id}/details', [ProjectController::class, 'index'])->name('user.project_details');
+        Route::get('/create', [ProjectController::class, 'create'])->name('user.project_create');
+        Route::get('/{id}/edit', [ProjectController::class, 'edit'])->name('user.project_edit');
+    });
+});
 
 require __DIR__.'/auth.php';

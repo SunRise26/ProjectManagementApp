@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::group(['prefix' => '/projects'], function() {
+        Route::get('/', [ProjectController::class, 'index']);
+        Route::post('/', [ProjectController::class, 'store']);
+        // Route::get('/{id}', [ProjectController::class, 'show']);
+        // Route::patch('/{id}', [ProjectController::class, 'update']);
+        // Route::delete('/{id}', [ProjectController::class, 'destroy']);
+    });
 });
