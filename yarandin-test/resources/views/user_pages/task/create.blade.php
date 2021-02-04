@@ -59,6 +59,10 @@ $(document).ready(() => {
                     return;
                 } else if (xhr.status == 422) {
                     formErrorsHandler.setErrors(xhr.responseJSON.errors);
+                } else if (xhr.status == 413) {
+                    formErrorsHandler.setErrors({
+                        "attached_file": ["server error (413): file too large"],
+                    });
                 }
                 submitBtn.prop('disabled', false);
             }

@@ -48,6 +48,7 @@ class PostRequest extends FormRequest
             ],
             'attached_file' => [
                 'file',
+                'max:10000'
             ]
         ];
     }

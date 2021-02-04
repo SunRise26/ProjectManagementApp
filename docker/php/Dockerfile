@@ -30,4 +30,6 @@ WORKDIR /var/www/yarandin-test
 
 CMD ["php-fpm"]
 
-RUN echo "xdebug.remote_port=9000" >> /usr/local/etc/php/php.ini
+RUN echo "xdebug.remote_port=9000" >> /usr/local/etc/php/php.ini \
+    && echo "post_max_size = 100M"  >> /usr/local/etc/php/php.ini \
+    && echo "upload_max_filesize = 100M"  >> /usr/local/etc/php/php.ini
