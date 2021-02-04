@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\ProjectController;
 use App\Http\Controllers\Web\TaskController;
 use Illuminate\Support\Facades\Route;
+use TCG\Voyager\Facades\Voyager;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/{id}/edit', [TaskController::class, 'edit'])->name('user.task_edit');
         Route::get('/{id}/attachment', [TaskController::class, 'taskAttachment'])->name('user.task_attachment');
     });
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });
 
 require __DIR__.'/auth.php';
