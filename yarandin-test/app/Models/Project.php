@@ -10,7 +10,13 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'description', 'position'];
+    protected $fillable = ['creator_id', 'title', 'description', 'position'];
+
+    public function tasks() {
+        return $this->hasMany(Task::class)
+            ->orderBy('position', 'ASC')
+            ->orderBy('created_at', 'DESC');
+    }
 
     /**
      * @param mixed $userId
@@ -18,7 +24,7 @@ class Project extends Model
      */
     public static function getUserList($userId): Collection
     {
-        return Project::where('user_id', $userId)
+        return Project::where('creator_id', $userId)
             ->orderBy('position', 'ASC')
             ->orderBy('created_at', 'DESC')
             ->get();
@@ -31,6 +37,6 @@ class Project extends Model
      */
     public static function getUserProject($userId, $projectId): Project
     {
-        return Project::where('user_id', $userId)->findOrFail($projectId);
+        return Project::where('creator_id', $userId)->findOrFail($projectId);
     }
 }

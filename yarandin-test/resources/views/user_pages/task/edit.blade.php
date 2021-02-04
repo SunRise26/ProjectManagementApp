@@ -1,28 +1,32 @@
 @extends('user_pages.layout')
 
+@php
+    $project_url = route('user.project_details', ['id' => $task->project_id]);
+@endphp
+
 @section('header')
 <h2 class="font-semibold pl-4 text-xl text-gray-800 leading-tight">
-    {{ __('Edit project') . ': "' . $project->title . '"' }}
+    {{ __('Edit task') . ': "' . $task->title . '"' }}
 </h2>
 @endsection
 
 @section('body')
 
-<form id="edit-project">
-    <x-project.form :project="$project" />
+<form id="edit-task">
+    <x-task.form :task="$task" :taskStatuses="$taskStatuses" />
 
     <div class="flex justify-between mt-12">
-        <x-button-link :href="route('dashboard')">{{ __('Back') }}</x-button-link>
+        <x-button-link :href="$project_url">{{ __('Back') }}</x-button-link>
         <x-button id="submit">{{ __('Save') }}</x-button>
     </div>
 </form>
 
 <script>
     $(document).ready(() => {
-        const form = $("#edit-project");
+        const form = $("#edit-task");
         const submitBtn = $("#submit");
 
-        const formErrorsHandler = FormErrorsHandler('edit-project');
+        const formErrorsHandler = FormErrorsHandler('edit-task');
     
         form.submit((e) => {
             e.preventDefault();
@@ -31,12 +35,12 @@
 
             $.ajax({
                 type: "PATCH",
-                url: '/api/projects/{{ $project->id }}',
+                url: '/api/tasks/{{ $task->id }}',
                 headers: {"X-XSRF-TOKEN": $.cookie("XSRF-TOKEN")},
                 data: form.serialize(),
                 complete: (xhr) => {
                     if (xhr.status == 200) {
-                        location.href = '/dashboard';
+                        location.href = '{{ $project_url }}';
                     } else if (xhr.status == 422) {
                         formErrorsHandler.setErrors(xhr.responseJSON.errors);
                     }
@@ -46,4 +50,5 @@
         });
     });
 </script>
+
 @endsection

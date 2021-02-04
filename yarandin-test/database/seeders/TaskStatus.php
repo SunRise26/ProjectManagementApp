@@ -14,8 +14,8 @@ class TaskStatus extends Seeder
      */
     public function run()
     {
-        ModelsTaskStatus::create(['code' => 'new', 'position' => 0]);
-        ModelsTaskStatus::create(['code' => 'in_progress', 'position' => 1]);
-        ModelsTaskStatus::create(['code' => 'done', 'position' => 2]);
+        ModelsTaskStatus::firstOrNew(['code' => 'new', 'position' => 0])->save();
+        ModelsTaskStatus::firstOrNew(['code' => 'in_progress', 'position' => 1])->save();
+        ModelsTaskStatus::firstOrNew(['code' => 'done', 'position' => 2])->save();
     }
 }

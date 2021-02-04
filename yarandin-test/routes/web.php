@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\ProjectController;
+use App\Http\Controllers\Web\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/{id}/details', [ProjectController::class, 'index'])->name('user.project_details');
         Route::get('/create', [ProjectController::class, 'create'])->name('user.project_create');
         Route::get('/{id}/edit', [ProjectController::class, 'edit'])->name('user.project_edit');
+    });
+
+    Route::group(['prefix' => '/task'], function () {
+        Route::get('/create', [TaskController::class, 'create'])->name('user.task_create');
+        Route::get('/{id}/edit', [TaskController::class, 'edit'])->name('user.task_edit');
     });
 });
 

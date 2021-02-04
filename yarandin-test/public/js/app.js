@@ -3872,7 +3872,7 @@ window.FormErrorsHandler = function (form_id) {
     });
   };
 
-  form.find('.input').on('change', function (e) {
+  form.find('.input').on('change keydown paste input', function (e) {
     var input = $(e.target);
     input.parent().find('.error-box').remove();
   });

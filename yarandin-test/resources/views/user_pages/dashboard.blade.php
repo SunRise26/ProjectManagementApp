@@ -13,7 +13,7 @@
 </x-button-link>
 
 @if (count($projects))
-    <div class="projects-list">
+    <div class="default-list projects-list">
         @foreach ($projects as $project)
             <x-dashboard.project :project="$project" />
         @endforeach

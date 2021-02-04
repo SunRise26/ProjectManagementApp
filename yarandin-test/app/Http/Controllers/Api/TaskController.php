@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Project\PostRequest;
-use App\Http\Requests\Project\UpdateRequest;
+use App\Http\Requests\Task\PostRequest;
+use App\Http\Requests\Task\UpdateRequest;
 use App\Models\Project;
-use App\Rules\NotEmptyString;
+use App\Models\Task;
+use App\Models\TaskStatus;
 use Exception;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +21,7 @@ class ProjectController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $projects = Project::getUserList($user->id);
+        $projects = Task::getUserList($user->id);
 
         return response()->json($projects->toJson());
     }
@@ -28,7 +29,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Project\PostRequest  $request
+     * @param  \App\Http\Requests\Task\PostRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request)
@@ -36,9 +37,13 @@ class ProjectController extends Controller
         $user = auth()->user();
 
         $validatedData = $request->validated();
+        $project = Project::getUserProject($user->id, $validatedData['project_id']);
+        $defaultStatus = TaskStatus::where('code', 'new')->firstOrFail();
 
-        $project = Project::create([
+        $project = Task::create([
             'creator_id' => $user->id,
+            'status_id' => $defaultStatus->id,
+            'project_id' => $project->id,
             'title' => $validatedData['title'],
             'description' => $validatedData['description'],
             'position' => $validatedData['position'],
@@ -58,7 +63,7 @@ class ProjectController extends Controller
         $user = auth()->user();
 
         try {
-            $project = Project::getUserProject($user->id, $id);
+            $project = Task::getUserTask($user->id, $id);
         } catch (Exception $e) {
             return response()->json([], 204);
         }
@@ -69,7 +74,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Project\UpdateRequest  $request
+     * @param  \App\Http\Requests\Task\UpdateRequest  $request
      * @param  mixed                                  $id
      * @return \Illuminate\Http\Response
      */
@@ -78,15 +83,15 @@ class ProjectController extends Controller
         $user = auth()->user();
 
         try {
-            $project = Project::getUserProject($user->id, $id);
+            $task = Task::getUserTask($user->id, $id);
         } catch (Exception $e) {
             return response()->json([], 204);
         }
 
         $validatedData = $request->validated();
 
-        $project->update($validatedData);
-        return response()->json($project->toJson());
+        $task->update($validatedData);
+        return response()->json($task->toJson());
     }
 
     /**
@@ -101,12 +106,12 @@ class ProjectController extends Controller
         $user = auth()->user();
 
         try {
-            $project = Project::getUserProject($user->id, $id);
+            $task = Task::getUserTask($user->id, $id);
         } catch (Exception $e) {
             return response()->json([], 204);
         }
 
-        $project->delete();
+        $task->delete();
         return response()->json();
     }
 }

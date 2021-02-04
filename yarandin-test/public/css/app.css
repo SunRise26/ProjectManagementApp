@@ -31446,39 +31446,40 @@ form .error-box .error-text {
   overflow: hidden;
   font-size: 16px;
   color: red;
-  margin-top: 5px;
+  padding-top: 5px;
+  padding-left: 1rem;
 }
 
-.dashboard .projects-list {
+.default-list {
   margin-top: 20px;
 }
 
-.dashboard .projects-list .project-block {
+.default-list .block {
   border-top: 2px solid black;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.dashboard .projects-list .project-block .project-row {
+.default-list .block .list-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.dashboard .projects-list .project-block .actions {
+.default-list .block .actions {
   display: flex;
 }
 
-.dashboard .projects-list .project-block .actions .button {
+.default-list .block .actions .button {
   margin-left: 1rem;
 }
 
-.dashboard .projects-list .project-block .title-data {
+.default-list .block .title-data {
   display: flex;
   flex-direction: column;
 }
 
-.dashboard .projects-list .project-block .title-data .title {
+.default-list .block .title-data .title {
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -31489,7 +31490,7 @@ form .error-box .error-text {
   overflow: hidden;
 }
 
-.dashboard .projects-list .project-block .description {
+.default-list .block .description {
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -31501,7 +31502,7 @@ form .error-box .error-text {
   white-space: pre-wrap;
 }
 
-.dashboard .projects-list .project-block .description--outer {
+.default-list .block .description--outer {
   margin-top: 1rem;
   background: #C8C6C5;
   border-radius: 5px;

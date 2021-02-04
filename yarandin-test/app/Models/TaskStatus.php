@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TaskStatus extends Model
 {
     use HasFactory;
+
+    public static function getSortedList() {
+        return TaskStatus::orderBy('position')->get();
+    }
 }

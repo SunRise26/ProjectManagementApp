@@ -13,7 +13,7 @@ window.FormErrorsHandler = (form_id) => {
         });
     };
 
-    form.find('.input').on('change', (e) => {
+    form.find('.input').on('change keydown paste input', (e) => {
         const input = $(e.target);
 
         input.parent().find('.error-box').remove();

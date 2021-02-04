@@ -7,5 +7,17 @@
 @endsection
 
 @section('body')
-project page
+
+<x-button-link :href="route('user.task_create', ['project_id' => $project->id])" class="justify-center" >
+    {{ __('Create new task') }}
+</x-button-link>
+
+@if (count($tasks))
+    <div class="default-list tasks-list">
+        @foreach ($tasks as $task)
+            <x-project.task :task="$task" :taskStatuses="$taskStatuses" />
+        @endforeach
+    </div>
+@endif
+
 @endsection
