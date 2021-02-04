@@ -21,11 +21,20 @@ class Task extends Model
         'attached_file_id'
     ];
 
+    public function file() {
+        return $this->hasOne(File::class, 'id', 'attached_file_id');
+    }
+
     public function saveFile($attachedFile)
     {
         $file = File::saveUploadedFile($attachedFile, null, 'uploads/task/' . $this->id);
 
         $this->update(['attached_file_id' => $file->id]);
+    }
+
+    public function getFileLink()
+    {
+        return route('user.task_attachment', $this->id);
     }
 
     /**

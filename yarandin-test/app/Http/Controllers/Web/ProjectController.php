@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\File;
 use App\Models\Project;
 use App\Models\TaskStatus;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class ProjectController extends Controller
     {
         $user = auth()->user();
         $project = Project::getUserProject($user->id, $id);
-        $tasks = $project->tasks()->get();
+        $tasks = $project->tasks()->with('file')->get();
         $taskStatuses = TaskStatus::getSortedList();
 
         return view('user_pages.project/details', [

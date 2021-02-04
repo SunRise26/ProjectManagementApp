@@ -28,11 +28,14 @@ class File extends Model
                 'name' => $fileName,
                 'file_path' => $path
             ]);
-            throw new Exception("qwe");
         } catch (Exception $e) {
             Storage::disk('local')->delete($savedFilePath);
         }
 
         return $file;
+    }
+
+    public function getFullPath() {
+        return $this->file_path . '/' . $this->name;
     }
 }

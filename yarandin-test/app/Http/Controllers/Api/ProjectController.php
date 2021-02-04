@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Project\PostRequest;
 use App\Http\Requests\Project\UpdateRequest;
 use App\Models\Project;
-use App\Rules\NotEmptyString;
 use Exception;
 use Illuminate\Http\Request;
 

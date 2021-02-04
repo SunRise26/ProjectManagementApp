@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => '/task'], function () {
         Route::get('/create', [TaskController::class, 'create'])->name('user.task_create');
         Route::get('/{id}/edit', [TaskController::class, 'edit'])->name('user.task_edit');
+        Route::get('/{id}/attachment', [TaskController::class, 'taskAttachment'])->name('user.task_attachment');
     });
 });
 

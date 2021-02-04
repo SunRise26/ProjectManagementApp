@@ -22,6 +22,12 @@ $status_selector_id = 'status-selector-' . $id;
             <span class="description">{{ $task->description }}</span>
         </div>
     @endif
+    @if (!empty($task->file))
+        <div class="list-row mt-4">
+            <span class="">{{ __('Attachment file') . ": " . $task->file->title }}</span>
+            <x-button-link download :href="$task->getFileLink()">{{ __("Download") }}</x-button-link>
+        </div>
+    @endif
 
 </div>
 

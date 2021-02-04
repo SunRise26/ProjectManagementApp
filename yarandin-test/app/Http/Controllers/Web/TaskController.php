@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\File;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
 {
@@ -31,5 +33,19 @@ class TaskController extends Controller
             'task' => $task,
             'taskStatuses' => $taskStatuses
         ]);
+    }
+
+    /**
+     * Force file download
+     *
+     * @param  \App\Http\Requests\Project\PostRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function taskAttachment(Request $request, $taskId) {
+        $user = auth()->user();
+        $task = Task::getUserTask($user->id, $taskId);
+        $file = File::findOrFail($task->attached_file_id);
+
+        return Storage::download($file->getFullPath(), $file->title);
     }
 }
