@@ -40,7 +40,7 @@ class TaskController extends Controller
         $project = Project::getUserProject($user->id, $validatedData['project_id']);
         $defaultStatus = TaskStatus::where('code', 'new')->firstOrFail();
 
-        $project = Task::create([
+        $task = Task::create([
             'creator_id' => $user->id,
             'status_id' => $defaultStatus->id,
             'project_id' => $project->id,
@@ -48,7 +48,17 @@ class TaskController extends Controller
             'description' => $validatedData['description'],
             'position' => $validatedData['position'],
         ]);
-        return response()->json($project->toJson(), 201);
+
+        // save file
+        try {
+            if ($attachedFile = $request->file('attached_file')) {
+                $task->saveFile($attachedFile);
+            }
+        } catch (Exception $e) {
+            // TODO: handle save fail
+        }
+
+        return response()->json($task->toJson(), 201);
     }
 
     /**
@@ -63,12 +73,12 @@ class TaskController extends Controller
         $user = auth()->user();
 
         try {
-            $project = Task::getUserTask($user->id, $id);
+            $task = Task::getUserTask($user->id, $id);
         } catch (Exception $e) {
             return response()->json([], 204);
         }
 
-        return response()->json($project->toJson());
+        return response()->json($task->toJson());
     }
 
     /**

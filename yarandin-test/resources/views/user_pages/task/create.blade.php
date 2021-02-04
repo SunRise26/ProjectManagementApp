@@ -1,8 +1,9 @@
 @extends('user_pages.layout')
 
 @php
-$project_id = request("project_id");
-$project_url = route('user.project_details', ['id' => $project_id]);
+$projectId = $project->id;
+$project_url = route('user.project_details', ['id' => $projectId]);
+$create_task_url = route('api.tasks.store');
 @endphp
 
 @section('header')
@@ -32,14 +33,26 @@ $(document).ready(() => {
     form.submit((e) => {
         e.preventDefault();
         submitBtn.prop('disabled', true);
-
         formErrorsHandler.crearAll();
+
+        const formData = new FormData(e.target);
+
+        // set project id
+        formData.append('project_id', {{ $projectId }});
+
+        // set attached file
+        const files = $("#attached_file")[0].files;
+        if (files.length > 0) {
+            formData.append('attached_file', files[0]);
+        }
 
         $.ajax({
             type: "POST",
-            url: '/api/tasks?project_id={{ $project_id }}',
+            url: '{{ $create_task_url }}',
             headers: {"X-XSRF-TOKEN": $.cookie("XSRF-TOKEN")},
-            data: form.serialize() + "&project_id={{ $project_id }}",
+            data: formData,
+            processData: false,
+            contentType: false,
             complete: (xhr) => {
                 if (xhr.status == 201) {
                     location.href = '{{ $project_url }}';

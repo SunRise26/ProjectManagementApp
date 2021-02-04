@@ -22,18 +22,18 @@ Route::group(['middleware' => 'auth:api'], function() {
     });
 
     Route::group(['prefix' => '/projects'], function() {
-        Route::get('/', [ProjectController::class, 'index']);
-        Route::post('/', [ProjectController::class, 'store']);
-        Route::get('/{id}', [ProjectController::class, 'show']);
-        Route::patch('/{id}', [ProjectController::class, 'update']);
-        Route::delete('/{id}', [ProjectController::class, 'destroy']);
+        Route::get('/', [ProjectController::class, 'index'])->name('api.projects.index');
+        Route::post('/', [ProjectController::class, 'store'])->name('api.projects.index');
+        Route::get('/{id}', [ProjectController::class, 'show'])->name('api.projects.show');
+        Route::patch('/{id}', [ProjectController::class, 'update'])->name('api.projects.update');
+        Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('api.projects.destroy');
     });
 
     Route::group(['prefix' => '/tasks'], function() {
-        Route::get('/', [TaskController::class, 'index']);
-        Route::post('/', [TaskController::class, 'store']);
-        Route::get('/{id}', [TaskController::class, 'show']);
-        Route::patch('/{id}', [TaskController::class, 'update']);
-        Route::delete('/{id}', [TaskController::class, 'destroy']);
+        Route::get('/', [TaskController::class, 'index'])->name('api.tasks.index');
+        Route::post('/', [TaskController::class, 'store'])->name('api.tasks.store');
+        Route::get('/{id}', [TaskController::class, 'show'])->name('api.tasks.show');
+        Route::patch('/{id}', [TaskController::class, 'update'])->name('api.tasks.update');
+        Route::delete('/{id}', [TaskController::class, 'destroy'])->name('api.tasks.destroy');
     });
 });

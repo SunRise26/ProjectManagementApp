@@ -45,6 +45,9 @@ class PostRequest extends FormRequest
                 'integer',
                 'required',
                 'min:0'
+            ],
+            'attached_file' => [
+                'file',
             ]
         ];
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use Illuminate\Http\Request;
@@ -11,7 +12,13 @@ class TaskController extends Controller
 {
     public function create()
     {
-        return view('user_pages.task/create');
+        $user = auth()->user();
+        $projectId = request("project_id");
+        $project = Project::getUserProject($user->id, $projectId);
+
+        return view('user_pages.task/create', [
+            'project' => $project,
+        ]);
     }
 
     public function edit(Request $request, $id)

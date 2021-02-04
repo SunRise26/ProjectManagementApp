@@ -42,4 +42,9 @@ $position = isset($task) ? $task->position : 0;
             :taskStatuses="$taskStatuses"
             :selectedId="$task->status_id" />
     </div>
+@else
+    <div class="mt-4">
+        <x-label for="attached_file" :value="__('Attached File')" />
+        <x-input type="file" name="attached_file" id="attached_file" />
+    </div>
 @endif
