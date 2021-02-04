@@ -1,0 +1,14 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+// abstracts
+@import 'abstracts/colors';
+@import 'abstracts/text';
+@import 'abstracts/ui';
+
+// layout
+@import 'layout/form';
+
+// pages
+@import 'pages/dashboard';

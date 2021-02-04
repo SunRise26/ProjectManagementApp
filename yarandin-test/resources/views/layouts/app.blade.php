@@ -16,7 +16,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased {{ $bodyClassName }}">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

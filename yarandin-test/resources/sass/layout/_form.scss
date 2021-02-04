@@ -1,0 +1,14 @@
+form {
+  .error-box {
+    display: flex;
+    flex-direction: column;
+
+    .error-text {
+      @include text-default;
+
+      font-size: 16px;
+      color: red;
+      margin-top: 5px;
+    }
+  }
+}

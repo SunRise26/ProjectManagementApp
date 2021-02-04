@@ -31424,6 +31424,90 @@ select {
           animation: bounce 1s infinite;
 }
 
+.button.is-disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 25%;
+}
+
+form .error-box {
+  display: flex;
+  flex-direction: column;
+}
+
+form .error-box .error-text {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  line-height: 1.25;
+  --tw-text-opacity: 1;
+  color: rgba(31, 41, 55, var(--tw-text-opacity));
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 16px;
+  color: red;
+  margin-top: 5px;
+}
+
+.dashboard .projects-list {
+  margin-top: 20px;
+}
+
+.dashboard .projects-list .project-block {
+  border-top: 2px solid black;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.dashboard .projects-list .project-block .project-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.dashboard .projects-list .project-block .actions {
+  display: flex;
+}
+
+.dashboard .projects-list .project-block .actions .button {
+  margin-left: 1rem;
+}
+
+.dashboard .projects-list .project-block .title-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard .projects-list .project-block .title-data .title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  line-height: 1.25;
+  --tw-text-opacity: 1;
+  color: rgba(31, 41, 55, var(--tw-text-opacity));
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.dashboard .projects-list .project-block .description {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  line-height: 1.25;
+  --tw-text-opacity: 1;
+  color: rgba(31, 41, 55, var(--tw-text-opacity));
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+
+.dashboard .projects-list .project-block .description--outer {
+  margin-top: 1rem;
+  background: #C8C6C5;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -184443,4 +184527,3 @@ select {
             animation: bounce 1s infinite;
   }
 }
-
