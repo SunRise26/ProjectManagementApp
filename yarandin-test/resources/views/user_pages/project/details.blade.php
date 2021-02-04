@@ -8,6 +8,26 @@
 
 @section('body')
 
+<form method="GET" id="status-filter-form" class="flex justify-around mb-12">
+@foreach ($taskStatuses as $taskStatus)
+    <div class="flex items-center">
+        @php
+            $checked = in_array($taskStatus->id, $selectedTaskStatuses);
+        @endphp
+        <x-input type="checkbox"
+            name="tasks_status_ids[]"
+            id="{{ $taskStatus->code }}"
+            value="{{ $taskStatus->id }}"
+            class="status-filter-checkbox cursor-pointer"
+            :checked="$checked" />
+        <label for="{{ $taskStatus->code }}"
+            class="cursor-pointer pl-4">
+            {{ __("task_status.$taskStatus->code") }}
+        </label>
+    </div>
+@endforeach
+</form>
+
 <x-button-link :href="route('user.task_create', ['project_id' => $project->id])" class="justify-center" >
     {{ __('Create new task') }}
 </x-button-link>
@@ -19,5 +39,16 @@
         @endforeach
     </div>
 @endif
+
+<script type="text/javascript">
+$(document).ready(() => {
+    const statusFilterForm = $("#status-filter-form");
+    const statusFilterCheckboxes = $(".status-filter-checkbox");
+
+    statusFilterCheckboxes.on('click', () => {
+        statusFilterForm.submit();
+    });
+});
+</script>
 
 @endsection
