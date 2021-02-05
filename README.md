@@ -1,6 +1,7 @@
 # Yarandin test project
 
 ## Installation:
+
 1. Build docker containers<br />
 RUN (cd docker && docker-compose build)
 
@@ -27,9 +28,16 @@ RUN (cd yarandin-test && php artisan key:generate)<br />
 Now available on https://localhost (by default)<br />
 Admin: https://localhost/admin
 
-## Admin Installation<br />
+## Admin Installation
+
 1. php artisan voyager:install
 
 2. set/create admin user:<br />
 set:    php artisan voyager:admin your@email.com<br />
 create: php artisan voyager:admin your@email.com --create
+
+## Testing
+
+1. .env.testing already prepared, just create "testing" database:<br />
+(cd docker && docker-compose exec mysql mysql -u root --password=123456)<br />
+CREATE DATABASE testing;
