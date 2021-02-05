@@ -2,7 +2,7 @@
 
 @section('header')
 <h2 class="font-semibold pl-4 text-xl text-gray-800 leading-tight">
-    {{ __('New Project') }}
+    {{ __('project.new_project') }}
 </h2>
 @endsection
 
@@ -11,8 +11,8 @@
     <x-project.form />
 
     <div class="flex justify-between mt-12">
-        <x-button-link :href="route('dashboard')">{{ __('Back') }}</x-button-link>
-        <x-button id="submit">{{ __('Save') }}</x-button>
+        <x-button-link :href="route('dashboard')">{{ __('general.back') }}</x-button-link>
+        <x-button id="submit">{{ __('general.save') }}</x-button>
     </div>
 </form>
 

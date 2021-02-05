@@ -9,6 +9,8 @@
 @section('body')
 
 <form method="GET" id="status-filter-form" class="flex justify-around mb-12">
+@csrf
+
 @foreach ($taskStatuses as $taskStatus)
     <div class="flex items-center">
         @php
@@ -29,7 +31,7 @@
 </form>
 
 <x-button-link :href="route('user.task_create', ['project_id' => $project->id])" class="justify-center" >
-    {{ __('Create new task') }}
+    {{ __('task.create_new') }}
 </x-button-link>
 
 @if (count($tasks))

@@ -6,7 +6,7 @@
 
 @section('header')
 <h2 class="font-semibold pl-4 text-xl text-gray-800 leading-tight">
-    {{ __('Edit task') . ': "' . $task->title . '"' }}
+    {{ __('task.edit_task') . ': "' . $task->title . '"' }}
 </h2>
 @endsection
 
@@ -16,8 +16,8 @@
     <x-task.form :task="$task" :taskStatuses="$taskStatuses" />
 
     <div class="flex justify-between mt-12">
-        <x-button-link :href="$project_url">{{ __('Back') }}</x-button-link>
-        <x-button id="submit">{{ __('Save') }}</x-button>
+        <x-button-link :href="$project_url">{{ __('general.back') }}</x-button-link>
+        <x-button id="submit">{{ __('general.save') }}</x-button>
     </div>
 </form>
 

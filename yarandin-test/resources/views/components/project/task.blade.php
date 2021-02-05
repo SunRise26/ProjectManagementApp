@@ -13,8 +13,8 @@ $status_selector_id = 'status-selector-' . $id;
         </div>
         <div class="actions">
             <x-task.status-select id="{{ $status_selector_id }}" class="button" :taskStatuses="$taskStatuses" :selectedId="$task->status_id" />
-            <x-button-link :href="route('user.task_edit', ['id' => $id])">edit</x-button-link>
-            <x-button id="{{ $delete_button_id }}">delete</x-button-link>
+            <x-button-link :href="route('user.task_edit', ['id' => $id])">{{ __('general.edit') }}</x-button-link>
+            <x-button id="{{ $delete_button_id }}">{{ __('general.delete') }}</x-button-link>
         </div>
     </div>
     @if (!empty($task->description))
@@ -24,8 +24,8 @@ $status_selector_id = 'status-selector-' . $id;
     @endif
     @if (!empty($task->file))
         <div class="list-row mt-4">
-            <span class="">{{ __('Attachment file') . ": " . $task->file->title }}</span>
-            <x-button-link download :href="$task->getFileLink()">{{ __("Download") }}</x-button-link>
+            <span class="">{{ __('general.attached_file') . ": " . $task->file->title }}</span>
+            <x-button-link download :href="$task->getFileLink()">{{ __("general.download") }}</x-button-link>
         </div>
     @endif
 

@@ -11,9 +11,9 @@ $delete_button_id = 'delete-project-' . $id;
             <span class="title">{{ $project->title }}</span>
         </div>
         <div class="actions">
-            <x-button-link :href="route('user.project_details', ['id' => $id])">go to project</x-button-link>
-            <x-button-link :href="route('user.project_edit', ['id' => $id])">edit</x-button-link>
-            <x-button id="{{ $delete_button_id }}">delete</x-button-link>
+            <x-button-link :href="route('user.project_details', ['id' => $id])">{{ __('project.go_to_project') }}</x-button-link>
+            <x-button-link :href="route('user.project_edit', ['id' => $id])">{{ __('general.edit') }}</x-button-link>
+            <x-button id="{{ $delete_button_id }}">{{ __('general.delete') }}</x-button-link>
         </div>
     </div>
     @if (!empty($project->description))

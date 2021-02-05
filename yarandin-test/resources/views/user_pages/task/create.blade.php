@@ -8,7 +8,7 @@ $create_task_url = route('api.tasks.store');
 
 @section('header')
 <h2 class="font-semibold pl-4 text-xl text-gray-800 leading-tight">
-    {{ __('New Task') }}
+    {{ __('task.new_task') }}
 </h2>
 @endsection
 
@@ -18,8 +18,8 @@ $create_task_url = route('api.tasks.store');
     <x-task.form />
 
     <div class="flex justify-between mt-12">
-        <x-button-link :href="$project_url">{{ __('Back') }}</x-button-link>
-        <x-button id="submit">{{ __('Save') }}</x-button>
+        <x-button-link :href="$project_url">{{ __('general.back') }}</x-button-link>
+        <x-button id="submit">{{ __('general.save') }}</x-button>
     </div>
 </form>
 

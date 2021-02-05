@@ -2,14 +2,14 @@
 
 @section('header')
 <h2 class="font-semibold pl-4 text-xl text-gray-800 leading-tight">
-    {{ __('Dashboard') }}
+    {{ __('general.dashboard') }}
 </h2>
 @endsection
 
 @section('body')
 
 <x-button-link :href="route('user.project_create')" class="justify-center" >
-    {{ __('Create new project') }}
+    {{ __('project.create_new') }}
 </x-button-link>
 
 @if (count($projects))

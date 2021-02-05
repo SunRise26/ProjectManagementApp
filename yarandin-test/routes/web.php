@@ -21,6 +21,18 @@ Route::get('/', function () {
     return redirect('register');
 });
 
+Route::group(['prefix' => '/lang'], function () {
+    Route::get('/en', function() {
+        session(['locale' => 'en']);
+        return back();
+    })->name('lang.en');
+
+    Route::get('/ua', function() {
+        session(['locale' => 'ua']);
+        return back();
+    })->name('lang.ua');;
+});
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
