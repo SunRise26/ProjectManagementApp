@@ -59,7 +59,7 @@ class ProjectController extends Controller
         try {
             $project = Project::getUserProject($user->id, $id);
         } catch (Exception $e) {
-            return response()->json([], 204);
+            return response()->json([], 404);
         }
 
         return response()->json($project->toJson());
@@ -79,7 +79,7 @@ class ProjectController extends Controller
         try {
             $project = Project::getUserProject($user->id, $id);
         } catch (Exception $e) {
-            return response()->json([], 204);
+            return response()->json([], 404);
         }
 
         $validatedData = $request->validated();
@@ -102,7 +102,7 @@ class ProjectController extends Controller
         try {
             $project = Project::getUserProject($user->id, $id);
         } catch (Exception $e) {
-            return response()->json([], 204);
+            return response()->json([], 404);
         }
 
         $project->delete();

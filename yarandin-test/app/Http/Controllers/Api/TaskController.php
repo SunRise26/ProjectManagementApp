@@ -75,7 +75,7 @@ class TaskController extends Controller
         try {
             $task = Task::getUserTask($user->id, $id);
         } catch (Exception $e) {
-            return response()->json([], 204);
+            return response()->json([], 404);
         }
 
         return response()->json($task->toJson());
@@ -95,7 +95,7 @@ class TaskController extends Controller
         try {
             $task = Task::getUserTask($user->id, $id);
         } catch (Exception $e) {
-            return response()->json([], 204);
+            return response()->json([], 404);
         }
 
         $validatedData = $request->validated();
@@ -118,7 +118,7 @@ class TaskController extends Controller
         try {
             $task = Task::getUserTask($user->id, $id);
         } catch (Exception $e) {
-            return response()->json([], 204);
+            return response()->json([], 404);
         }
 
         $task->delete();
