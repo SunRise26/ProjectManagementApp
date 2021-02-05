@@ -12,4 +12,9 @@ class TaskStatus extends Model
     public static function getSortedList() {
         return TaskStatus::orderBy('position')->get();
     }
+
+    public function getTranslatedTitle(bool $original = false) {
+        $code = $original ? $this->getOriginal('code') : $this->code;
+        return trans("task_status.$code");
+    }
 }

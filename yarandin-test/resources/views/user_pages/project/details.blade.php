@@ -24,7 +24,7 @@
             :checked="$checked" />
         <label for="{{ $taskStatus->code }}"
             class="cursor-pointer pl-4">
-            {{ __("task_status.$taskStatus->code") }}
+            {{ $taskStatus->getTranslatedTitle() }}
         </label>
     </div>
 @endforeach
